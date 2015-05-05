@@ -13,16 +13,16 @@ function startHDFS {
 }
 
 function startYarn {
-	ssh node2 '$HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start resourcemanager'
-	ssh node2 '$HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR start nodemanager'
-	ssh node2 '$HADOOP_YARN_HOME/sbin/yarn-daemon.sh start proxyserver --config $HADOOP_CONF_DIR'
-	ssh node2 '$HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh start historyserver --config $HADOOP_CONF_DIR'
+	$HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start resourcemanager
+	$HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR start nodemanager
+	$HADOOP_YARN_HOME/sbin/yarn-daemon.sh start proxyserver --config $HADOOP_CONF_DIR
+	$HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh start historyserver --config $HADOOP_CONF_DIR
 	echo "started yarn"
 }
 
 function createEventLogDir {
-	hdfs dfs -mkdir /tmp
-	hdfs dfs -mkdir /tmp/spark-events
+	$HADOOP_PREFIX/bin/hdfs dfs -mkdir /tmp
+	$HADOOP_PREFIX/bin/hdfs dfs -mkdir /tmp/spark-events
 	echo "created spark event log dir"
 }
 

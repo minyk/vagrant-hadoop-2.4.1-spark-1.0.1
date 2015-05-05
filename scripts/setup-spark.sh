@@ -29,12 +29,12 @@ function setupEnvVars {
 }
 
 function installSpark {
-	if resourceExists $SPARK_ARCHIVE; then
+	if resourceExists ${SPARK_ARCHIVE}; then
 		installLocalSpark
 	else
 		installRemoteSpark
 	fi
-	ln -s /usr/local/$SPARK_VERSION-bin-hadoop2.4 /usr/local/spark
+	ln -s /usr/local/spark-${SPARK_VERSION}-bin-hadoop2.6 /usr/local/spark
 }
 
 echo "setup spark"

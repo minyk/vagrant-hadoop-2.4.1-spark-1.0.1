@@ -16,17 +16,22 @@
 
 <!-- Put site-specific property overrides in this file. -->
 <configuration>
- <!-- without this property, mapreduce will not run as a yarn -->
- <property>
-  <name>mapreduce.framework.name</name>
-  <value>yarn</value>
- </property>
- <property>
-  <name>mapreduce.jobhistory.intermediate-done-dir</name>
-  <value>/var/hadoop/mr-history/tmp</value>
- </property>
- <property>
-  <name>mapreduce.jobhistory.done-dir</name>
-  <value>/var/hadoop/mr-history/done</value>
- </property>
+    <!-- without this property, mapreduce will not run as a yarn -->
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.intermediate-done-dir</name>
+        <value>/var/hadoop/mr-history/tmp</value>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.done-dir</name>
+        <value>/var/hadoop/mr-history/done</value>
+    </property>
+    <!-- for sandbox -->
+    <property>
+        <name>mapreduce.client.submit.file.replication</name>
+        <value>1</value>
+    </property>
 </configuration>

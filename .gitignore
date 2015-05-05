@@ -11,3 +11,6 @@
 /learn-scala/.settings/org.eclipse.core.resources.prefs
 /learn-scala/.settings/org.eclipse.jdt.core.prefs
 /learn-scala/.settings/org.eclipse.m2e.core.prefs
+
+.idea
+*.iml

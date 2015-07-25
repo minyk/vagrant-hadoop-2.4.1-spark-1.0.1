@@ -32,8 +32,21 @@ function startSpark {
 	echo "started spark"
 }
 
+function startSparknotebook {
+    $SPARKNOTEBOOK_HOME/start-spark-notebook.sh
+    echo "started spark-notebook"
+}
+
+function setupServices {
+    cp -f /vagrant/scripts/start-all-services.sh /etc/init.d/start-all-services
+    chmod a+x /etc/init.d/start-all-services
+    chkconfig start-all-services on
+}
+
 formatNameNode
 startHDFS
-startYarn
+#startYarn
 createEventLogDir
 startSpark
+startSparknotebook
+setupServices

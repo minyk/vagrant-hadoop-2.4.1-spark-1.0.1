@@ -20,20 +20,6 @@ function startYarn {
 	echo "started yarn"
 }
 
-function createEventLogDir {
-	hdfs dfs -mkdir /tmp
-	hdfs dfs -mkdir /tmp/spark-events
-	echo "created spark event log dir"
-}
-
-function startSpark {
-	$SPARK_HOME/sbin/start-all.sh
-	$SPARK_HOME/sbin/start-history-server.sh
-	echo "started spark"
-}
-
 formatNameNode
 startHDFS
 startYarn
-createEventLogDir
-startSpark

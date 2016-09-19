@@ -1,7 +1,11 @@
 #!/bin/bash
 
 #java
-JAVA_ARCHIVE=jdk-7u51-linux-x64.gz
+JAVA_VERSION="8"
+JAVA_UPDATE="91"
+JAVA_ARCHIVE="jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz"
+JAVA_HOME="jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}"
+
 #hadoop
 HADOOP_PREFIX=/usr/local/hadoop
 HADOOP_CONF=$HADOOP_PREFIX/etc/hadoop

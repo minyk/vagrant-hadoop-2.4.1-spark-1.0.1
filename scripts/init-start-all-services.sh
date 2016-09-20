@@ -2,21 +2,22 @@
 source "/vagrant/scripts/common.sh"
 
 function formatNameNode {
-	$HADOOP_PREFIX/bin/hdfs namenode -format myhadoop -force -noninteractive
+	$HADOOP_HOME/bin/hdfs --config $HADOOP_CONF_DIR namenode -format myhadoop -force -noninteractive
 	echo "formatted namenode"
 }
 
 function startHDFS {
-	$HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start namenode
-	$HADOOP_PREFIX/sbin/hadoop-daemons.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
+	$HADOOP_HOME/bin/hdfs --config $HADOOP_CONF_DIR --daemon start namenode
+	$HADOOP_HOME/bin/hdfs --config $HADOOP_CONF_DIR --hosts $HADOOP_CONF_DIF/workers --workers --daemon start datanode
 	echo "started hdfs"
 }
 
 function startYarn {
-	ssh node2 '$HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start resourcemanager'
-	ssh node2 '$HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR start nodemanager'
-	ssh node2 '$HADOOP_YARN_HOME/sbin/yarn-daemon.sh start proxyserver --config $HADOOP_CONF_DIR'
-	ssh node2 '$HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh start historyserver --config $HADOOP_CONF_DIR'
+	ssh node2 '$HADOOP_YARN_HOME/bin/yarn --config $HADOOP_CONF_DIR --daemon start resourcemanager'
+	ssh node2 '$HADOOP_YARN_HOME/bin/yarn --config $HADOOP_CONF_DIR --hosts $HADOOP_CONF_DIR/workers --workers --daemon start nodemanager'
+	ssh node2 '$HADOOP_YARN_HOME/bin/yarn --config $HADOOP_CONF_DIR --daemon start proxyserver'
+	ssh node2 '$HADOOP_YARN_HOME/bin/yarn --config $HADOOP_CONF_DIR --daemon start timelineserver'
+	ssh node2 '$HADOOP_HOME/bin/mapred --config $HADOOP_CONF_DIR --daemon start historyserver'
 	echo "started yarn"
 }
 

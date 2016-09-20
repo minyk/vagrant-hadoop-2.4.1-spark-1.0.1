@@ -15,8 +15,8 @@ function installRemoteJava {
 function setupJava {
 	echo "setting up java"
 	if resourceExists $JAVA_ARCHIVE; then
-        chown -R root:root /usr/local/${JAVA_HOME}
-		ln -s /usr/local/${JAVA_HOME} /usr/local/java
+        chown -R root:root /usr/local/${JAVA_HOME_ORG}
+		ln -s /usr/local/${JAVA_HOME_ORG} /usr/local/java
 	else
 		ln -s /usr/lib/jvm/jre /usr/local/java
 	fi

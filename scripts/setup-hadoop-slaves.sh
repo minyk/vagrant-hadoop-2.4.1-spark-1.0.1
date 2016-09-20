@@ -14,12 +14,12 @@ do
 done
 
 function setupSlaves {
-	echo "modifying $HADOOP_CONF/slaves"
+	echo "modifying $HADOOP_CONF/workers"
 	for i in $(seq $START $TOTAL_NODES)
 	do 
 		entry="node${i}"
 		echo "adding ${entry}"
-		echo "${entry}" >> $HADOOP_CONF/slaves
+		echo "${entry}" >> $HADOOP_CONF/workers
 	done
 }
 

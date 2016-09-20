@@ -18,6 +18,10 @@ do
 done
 #echo "total nodes = $TOTAL_NODES"
 
+function installEPEL {
+    yum -y install epel-release
+}
+
 function installSSHPass {
 	yum -y install sshpass
 }
@@ -31,11 +35,11 @@ function setupHosts {
 	for i in $(seq 1 $TOTAL_NODES)
 	do 
 		if [ $i -lt 10 ]; then
-			entry="10.211.55.10${i} node${i}"
+			entry="10.10.10.20${i} node${i}"
 		elif [ $ i < 100]; then
-			entry="10.211.55.1${i} node${i}"
+			entry="10.10.10.2${i} node${i}"
 		else
-			entry="10.211.55.${i} node${i}"
+			entry="10.10.10.${i} node${i}"
 		fi
 		echo "adding ${entry}"
 		echo "${entry}" >> /etc/hosts
@@ -60,6 +64,7 @@ function sshCopyId {
 }
 
 echo "setup ssh"
+installEPEL
 installSSHPass
 createSSHKey
 overwriteSSHCopyId
